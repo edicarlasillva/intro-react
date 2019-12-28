@@ -15,14 +15,21 @@ class TechList extends Component {
       newTech: ""
     });
   };
+  handleDelete = tech => {
+    this.setState({ techs: this.state.techs.filter(t => t !== tech) });
+  };
   render() {
     return (
       // Fragmentos - Usar tags vazias por volta do conteúdo (elemento root)
       <form onSubmit={this.handleSubmit}>
-        <h1>{this.state.newTech}</h1>
         <ul>
           {this.state.techs.map(tech => (
-            <li key={tech}>{tech}</li>
+            <li key={tech}>
+              {tech}
+              <button type="button" onClick={() => this.handleDelete(tech)}>
+                Remover
+              </button>
+            </li>
           ))}
         </ul>
         <input
